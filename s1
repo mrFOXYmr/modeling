@@ -1,0 +1,67 @@
+; =========================================
+; Система рис.1
+; Дублирование всех элементов
+; =========================================
+
+GENERATE 1,,,10000
+
+; ----- Блок P1 -----
+TRANSFER .09,FAIL,P1_OK
+
+; ----- Блок P2 -----
+P1_OK TRANSFER .01,FAIL,P2_OK
+
+; ----- Блок P3 -----
+P2_OK TRANSFER .16,FAIL,P3_OK
+
+; ----- Блок P4 -----
+P3_OK TRANSFER .0025,FAIL,P4_OK
+
+; ----- Блок P5 -----
+P4_OK TRANSFER .36,FAIL,SUCCESS
+
+; ----- Успешная работа -----
+SUCCESS SAVEVALUE SUCCESS_CNT+,1
+TERMINATE 1
+
+; ----- Отказ системы -----
+FAIL SAVEVALUE FAIL_CNT+,1
+TERMINATE 1
+
+START 10000
+
+
+----
+
+
+; =========================================
+; Система рис.3
+; Дублирование P1, P3, P5
+; =========================================
+
+GENERATE 1,,,10000
+
+; ----- Блок P1 -----
+TRANSFER .09,FAIL,P1_OK
+
+; ----- Блок P2 -----
+P1_OK TRANSFER .1,FAIL,P2_OK
+
+; ----- Блок P3 -----
+P2_OK TRANSFER .16,FAIL,P3_OK
+
+; ----- Блок P4 -----
+P3_OK TRANSFER .05,FAIL,P4_OK
+
+; ----- Блок P5 -----
+P4_OK TRANSFER .36,FAIL,SUCCESS
+
+; ----- Успешная работа -----
+SUCCESS SAVEVALUE SUCCESS_CNT+,1
+TERMINATE 1
+
+; ----- Отказ системы -----
+FAIL SAVEVALUE FAIL_CNT+,1
+TERMINATE 1
+
+START 10000
